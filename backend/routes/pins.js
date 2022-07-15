@@ -7,12 +7,20 @@ router.post("/", async (req, res) => {
 
   try {
     const savedPin = await newPin.save();
-    res.status(200).json(savedPin);
+    return res.status(200).json(savedPin);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
 // ? Get all pins
+router.get("/", async (req, res) => {
+  try {
+    const pins = await Pin.find();
+    return res.status(200).json(pins);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
 
 module.exports = router;
